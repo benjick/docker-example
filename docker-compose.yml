@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  ui:
+    image: mhart/alpine-node:8.11.3
+    working_dir: /var/app
+    volumes:
+      - ./web:/var/app
+      - /var/app/node_modules/
+    command: sh -c "yarn && yarn start"
+    ports:
+      - '3000:3000'
+  server:
+    image: mhart/alpine-node:8.11.3
+    working_dir: /var/app
+    volumes:
+      - ./server:/var/app
+      - /var/app/node_modules/
+    command: sh -c "yarn && yarn start"
+    ports:
+      - '4000:4000'
